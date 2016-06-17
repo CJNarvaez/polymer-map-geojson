@@ -3,5 +3,5 @@
 Componente para usar con google maps carga un GeoJson:
 
 ```html
-<mapa-componente geojson="Zacatecas.json"></mapa-componente>
+<mapa-componente geojson="Archivo.json"></mapa-componente>
 ```

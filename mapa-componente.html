@@ -1,0 +1,39 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<dom-module id="mapa-componente">
+  <template>
+    <style>
+      h1 {
+        color: red;
+      }
+      #map {
+        height: 450px;
+        width: 100%
+      }
+    </style>
+    <h1>Mapa</h1>
+    <div id="map" geojson="{{geojson}}"></div>
+  </template>
+  <script>
+    Polymer({
+      is: 'mapa-componente'
+    });
+
+    var map;
+    function initMap() {
+      mapDiv = document.getElementById('map');
+      map = new google.maps.Map(mapDiv, {
+        center: {lat: 22.77, lng: -102.57},
+        zoom: 10
+      });
+      map.data.loadGeoJson(mapDiv.geojson);
+      map.data.setStyle({ fillColor: 'green' });
+      map.data.addListener('click', function(event) {
+        //console.log(event.feature);
+        map.data.setStyle({ fillColor: 'green' });
+        map.data.revertStyles;
+        map.data.overrideStyle(event.feature, { fillColor: 'red' });
+      });
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?&callback=initMap"></script>
+</dom-module>
